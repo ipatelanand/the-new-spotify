@@ -1,0 +1,19 @@
+.login-container {
+  display: flex;
+  min-width: 100vh;
+  min-height: 100vh;
+  background-color: #191414;
+  color: #1DB954;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.welcome-auth-page {
+  font-size: 50px;
+  align-self: center;
+  width: 100%;
+}
+
+#auth-val {
+    width: 75vh;
+}

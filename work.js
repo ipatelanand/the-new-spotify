@@ -1,12 +1,13 @@
 $(() => {
+
   $('#auth-btn').on('click', () => {
     const access_token = $('#auth-val').val()
-    console.log(access_token);
+    // console.log(access_token);
+    $('.login-container').remove()
 
 
-    $('#search-btn').on('click', () => {
-    const $search_val = $('#search-val').val()
-    console.log($search_val);
+
+
 
     $.ajax({
       url: 'https://api.spotify.com/v1/me',
@@ -14,11 +15,14 @@ $(() => {
         'Authorization': 'Bearer ' + access_token
       },
       success: function(response) {
-        $('.welcome').text(`Welcome ${response.display_name}`)
+        $('.welcome').text(`Welcome ${response.display_name}!`)
         console.log(response);
       }
   });
 
+      $('#search-btn').on('click', () => {
+      const $search_val = $('#search-val').val()
+      console.log($search_val);
 
 
     $.ajax({
@@ -34,9 +38,9 @@ $(() => {
         $('<h1>').text(artistName).appendTo($('body'))
         $('<img>').attr('src', artistImage).appendTo($('body'))
 
-        console.log(artistId);
-        console.log(data.artists.items[0].name);
-        console.log(data);
+        // console.log(artistId);
+        // console.log(data.artists.items[0].name);
+        // console.log(data);
 
         $.ajax({
           url:`https://api.spotify.com/v1/artists/${artistId}/albums` ,
