@@ -56,9 +56,15 @@ $(() => {
           console.log(data);
           for (let i=0; i<data.items.length; i++){
             const albumId = data.items[i].id
-            const albumName = data.items[i].name
+            const albumName = $('<h3>').text(data.items[i].name)
             const albumArt = $('<img>').attr('src', data.items[i].images[0].url)
-            $('<h6>').text(albumName).appendTo($('.carosel-container')).append(albumArt)
+            const albumContainer = $('<div>').addClass('album-Container')
+
+            albumContainer.appendTo($('.carosel-container'))
+            albumName.appendTo(albumContainer)
+            albumArt.appendTo(albumContainer)
+
+            // $('<h3>').text(albumName).appendTo($(albumContainer)).append(albumArt).appendTo($('.carosel-container'))
 
             $.ajax({
               url:`https://api.spotify.com/v1/albums/${albumId}/tracks` ,
@@ -66,11 +72,13 @@ $(() => {
                 'Authorization': 'Bearer ' + access_token
               }
             }).then((data) => {
+
               const $albumTracks = $('<div>').addClass('album-tracks')
               for (i=0; i<data.items.length; i++){
-                const trackName = (data.items[i].name)
+                let iterator = 1+i
+                const trackName = `${iterator}. ${(data.items[i].name)}`
                 $('<h1>').text(trackName).appendTo($albumTracks)
-                $albumTracks.appendTo('body')
+                $albumTracks.appendTo(albumContainer)
                 // console.log(trackName);
               }
               // console.log(trackName);
