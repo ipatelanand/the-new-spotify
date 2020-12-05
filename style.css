@@ -1,3 +1,8 @@
+body {
+  background-color: #191414;
+  color: white;
+}
+
 .login-container {
   display: flex;
   min-width: 100vh;
@@ -16,4 +21,24 @@
 
 #auth-val {
     width: 75vh;
+}
+
+.artist-info {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.artist-info h1{
+  text-align: center;
+  width: 100%;
+}
+
+.artist-info > img {
+  border: solid 5px #1DB954;
+}
+
+.carosel-container {
+  display: flex;
 }
