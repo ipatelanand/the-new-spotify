@@ -42,5 +42,11 @@ body {
 .carosel-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
+}
+
+.album-tracks {
+  background-color: #191414;
+  opacity: 0.75;
 }
