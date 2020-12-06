@@ -29,6 +29,7 @@ $(() => {
       $('<div>').addClass('album-tracks').appendTo($('.interface'))
       $('.album-tracks').remove()
       $('#next-btn').remove()
+      $('#back-btn').remove()
 
     $.ajax({
       url: `https://api.spotify.com/v1/search?q=${$search_val}&type=artist` ,
@@ -104,8 +105,19 @@ $(() => {
           }
 
           //end for for loop
+          $('<button>').attr('id', 'back-btn').text('back').appendTo($('body'))
+          let iteratorArray = 0
+          albumContainerArray[0].appendTo($('.carosel-container'))
+          $('#back-btn').on('click', () => {
+            albumContainerArray[iteratorArray].remove()
+            iteratorArray--
+            albumContainerArray[iteratorArray].appendTo($('.carosel-container'))
+
+          })
+
+
             $('<button>').attr('id', 'next-btn').text('next').appendTo($('body'))
-            let iteratorArray = 0
+
             albumContainerArray[0].appendTo($('.carosel-container'))
             $('#next-btn').on('click', () => {
               albumContainerArray[iteratorArray].remove()
