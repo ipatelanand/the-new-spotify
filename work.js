@@ -57,12 +57,15 @@ $(() => {
           for (let i=0; i<data.items.length; i++){
             const albumId = data.items[i].id
             const albumName = $('<h3>').text(data.items[i].name)
-            const albumArt = $('<img>').attr('src', data.items[i].images[0].url)
+            const albumArtSrc =  data.items[i].images[0].url
             const albumContainer = $('<div>').addClass('album-Container')
 
+            albumContainer.css('height', '640px')
+            albumContainer.css('width', '640px')
+            albumContainer.css('overflow', 'scroll')
             albumContainer.appendTo($('.carosel-container'))
             albumName.appendTo(albumContainer)
-            albumArt.appendTo(albumContainer)
+            albumContainer.css('background-image', `url("${albumArtSrc}")`)
 
             // $('<h3>').text(albumName).appendTo($(albumContainer)).append(albumArt).appendTo($('.carosel-container'))
 
