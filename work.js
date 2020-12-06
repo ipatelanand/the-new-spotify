@@ -54,6 +54,10 @@ $(() => {
           }
         }).then((data) => {
           console.log(data);
+
+          $('<button>').attr('id', 'next-btn').text('next').appendTo($('body'))
+
+          const albumContainerArray = []
           for (let i=0; i<data.items.length; i++){
             const albumId = data.items[i].id
             const albumName = $('<h3>').text(data.items[i].name)
@@ -63,11 +67,15 @@ $(() => {
             albumContainer.css('height', '640px')
             albumContainer.css('width', '640px')
             albumContainer.css('overflow', 'scroll')
-            albumContainer.appendTo($('.carosel-container'))
             albumName.appendTo(albumContainer)
             albumContainer.css('background-image', `url("${albumArtSrc}")`)
+            albumContainerArray.push(albumContainer)
+            // albumContainer.appendTo($('.carosel-container'))
 
-            // $('<h3>').text(albumName).appendTo($(albumContainer)).append(albumArt).appendTo($('.carosel-container'))
+
+
+
+
 
             $.ajax({
               url:`https://api.spotify.com/v1/albums/${albumId}/tracks` ,
@@ -93,6 +101,20 @@ $(() => {
 
 
           }
+
+          //end for for loop
+            let iteratorArray = 0
+            albumContainerArray[0].appendTo($('.carosel-container'))
+            $('#next-btn').on('click', () => {
+              albumContainerArray[iteratorArray].remove()
+              iteratorArray++
+              albumContainerArray[iteratorArray].appendTo($('.carosel-container'))
+              
+            })
+
+
+          // (albumContainerArray[0]).appendTo($('body'))
+
         }), (error) => {
           console.log(error);
         }
