@@ -78,7 +78,7 @@ $(() => {
 
 
 
-
+            
             $.ajax({
               url:`https://api.spotify.com/v1/albums/${albumId}/tracks` ,
               headers: {
@@ -92,10 +92,9 @@ $(() => {
                 const trackName = `${iterator}. ${(data.items[i].name)}`
                 $('<h1>').text(trackName).appendTo($albumTracks)
                 $albumTracks.appendTo(albumContainer)
-                // console.log(trackName);
               }
-              // console.log(trackName);
-              // console.log(' space');
+
+
             }), (error) => {
               console.log(error);
             }
@@ -105,6 +104,8 @@ $(() => {
           }
 
           //end for for loop
+
+
           $('<button>').attr('id', 'back-btn').text('back').appendTo($('body'))
           let iteratorArray = 0
           albumContainerArray[0].appendTo($('.carosel-container'))
@@ -125,6 +126,7 @@ $(() => {
               albumContainerArray[iteratorArray].appendTo($('.carosel-container'))
 
             })
+
 
 
           // (albumContainerArray[0]).appendTo($('body'))

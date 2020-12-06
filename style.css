@@ -48,5 +48,10 @@ body {
 
 .album-tracks {
   background-color: #191414;
+  opacity: 0.0;
+
+}
+
+.album-tracks:hover {
   opacity: 0.75;
 }
