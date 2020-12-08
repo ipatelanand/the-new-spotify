@@ -78,7 +78,7 @@ $(() => {
 
 
 
-            
+
             $.ajax({
               url:`https://api.spotify.com/v1/albums/${albumId}/tracks` ,
               headers: {
@@ -110,9 +110,18 @@ $(() => {
           let iteratorArray = 0
           albumContainerArray[0].appendTo($('.carosel-container'))
           $('#back-btn').on('click', () => {
-            albumContainerArray[iteratorArray].remove()
             iteratorArray--
-            albumContainerArray[iteratorArray].appendTo($('.carosel-container'))
+            if (iteratorArray < 0) {
+              albumContainerArray[0].hide()
+              iteratorArray =  albumContainerArray.length -1
+              albumContainerArray[iteratorArray].appendTo($('.carosel-container')).show()
+              // console.log(iteratorArray);
+            } else {
+              albumContainerArray[iteratorArray+1].hide()
+
+              albumContainerArray[iteratorArray].appendTo($('.carosel-container')).show()
+            }
+
 
           })
 
@@ -120,10 +129,20 @@ $(() => {
             $('<button>').attr('id', 'next-btn').text('next').appendTo($('body'))
 
             albumContainerArray[0].appendTo($('.carosel-container'))
+
             $('#next-btn').on('click', () => {
-              albumContainerArray[iteratorArray].remove()
-              iteratorArray++
-              albumContainerArray[iteratorArray].appendTo($('.carosel-container'))
+
+              if (iteratorArray !== albumContainerArray.length -1) {
+                albumContainerArray[iteratorArray].hide()
+                iteratorArray++
+                albumContainerArray[iteratorArray].appendTo($('.carosel-container')).show()
+
+              } else {
+                albumContainerArray[iteratorArray].hide()
+                iteratorArray =0
+                albumContainerArray[iteratorArray+1].show()
+
+              }
 
             })
 
